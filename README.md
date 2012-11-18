@@ -1,4 +1,4 @@
-miniPHP
+azer
 =======
 
-A minimal PHP framework, includes  bootstrap - router - controller/model/view template
+minimal PHP framework
