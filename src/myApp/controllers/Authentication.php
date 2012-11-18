@@ -63,6 +63,11 @@ class Authentication {
 
 	}
 	
+	function error ( $data){
+		$this->read($data, array('notification'=>'sorry but not authorized'));
+	
+	}
+	
 }
 
 

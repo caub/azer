@@ -30,16 +30,24 @@ class Router {
 			$_REQUEST['id'] = $matches['id'];
 		}
 		
+		// Authentication Access Control
+		if (!isset($_SESSION['user']) && $controllerName !== 'authentication'){
+			$login = new \myApp\controllers\Login;
+			$login->read();
+		}
+		
 		$controllerName = 'myApp\\controllers\\' . ucwords($controllerName);
 		$controller = new $controllerName;
 		
-		// create an Access Control to wrap the controller
+		// Default Access Control for each controller
 		$accessControlList = 
 		 isset($_SESSION['user']->accessControl)? 
 		 	$_SESSION['user']->accessControl:
 			array('default'=>array('read','create','update','delete'));/*for demo, all profiles will have it after*/
 		
-		$ac = new \myApp\accessControl\Main($controller, $accessControlList);
+		$authorizedMethods = array_key_exists($controllerName, $accessControlList)? $accessControlList[$controllerName]:$accessControlList['default'];
+		
+		$ac = new \myApp\accessControl\Main($controller, $authorizedMethods);
 
 		//call it
 		try{

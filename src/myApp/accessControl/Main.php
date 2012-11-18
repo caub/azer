@@ -2,18 +2,26 @@
 
 namespace myApp\accessControl;
 
-
 /*
- *  Access Control
+ * targetted controller
  */
 
-class Main extends Authenticated {
-	
 
+class Main {
+	
+	protected $authorizedMethods = null;
+	protected $acl = null;
+	
+	public function __construct( $target, $authorizedMethods){
+		$this->target = $target;
+		$this->authorizedMethods = $authorizedMethods;
+	
+	}
+	
 	public function __call( $method, $arguments ){
-		parent::__call($method, $arguments);
+
 		//debug_r($this->getAuthorizedMethods());
-		if ( method_exists( $this->target, $method) && in_array($method, $this->getAuthorizedMethods()) ){
+		if ( is_callable( $this->target, $method) && in_array($method, $this->authorizedMethods) ){
 			
 			return call_user_func_array(
 				array( $this->target, $method ),
@@ -23,11 +31,6 @@ class Main extends Authenticated {
 			//debug_r($arguments);
 			$this->target->error($arguments[0]);
 		}
-	}
-	
-	private function getAuthorizedMethods(){
-
-		return array_key_exists($this->targetName, $this->acl)? $this->acl[$this->targetName]:$this->acl['default'];
 	}
 	
 }

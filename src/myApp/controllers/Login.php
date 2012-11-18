@@ -10,7 +10,7 @@ use myApp\views\View;
 class Login {
 
 
-	function read( $data) {
+	function read( $data = array()) {
 		
 		View::render('login', $data);
 		
