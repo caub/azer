@@ -29,12 +29,6 @@ class Router {
 			$_REQUEST['id'] = $matches['id'];
 		}
 		
-		// Authentication Access Control
-		if (!isset($_SESSION['user']) && $controllerName !== 'authentication'){
-			$login = new \myApp\controllers\Login;
-			$login->read();
-		}
-		
 		$controllerName = 'myApp\\controllers\\' . ucwords($controllerName);
 		$controller = new $controllerName;
 

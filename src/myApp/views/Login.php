@@ -8,8 +8,8 @@
 
 <br>
 
-<form action="/<?= APP ?>/authentication" method="post">
-	<input type="hidden" name="method" value="read">
+<form action="/<?= APP ?>/login" method="post">
+
 	<input type="text" name="login" placeholder="Email" value="test_myapp@yopmail.com">
 	<input type="password" name="password" placeholder="Password" value="1">
 	<input type="submit" value="Sign in">

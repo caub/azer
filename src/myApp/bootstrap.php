@@ -40,6 +40,13 @@ if (isset($_GET['registration']) && $_GET['registration'] == "ok" ) { //same as 
 	exit();
 }
 
+// Authentication Access Control
+if (!isset($_SESSION['user']) ){
+
+	$login = new \myApp\controllers\Login;
+	$login->read($_REQUEST);
+}
+
 $config = JsonToArray::fetchConfig(  __DIR__ .'/config/routes.json' );
 
 $router = new Router( $config );

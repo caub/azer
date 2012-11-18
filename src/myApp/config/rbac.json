@@ -3,7 +3,6 @@
 	{
 		"default": [],
 		"login": ["read"],
-		"authentication": ["read"],
 		"registerValidation": ["read"]
 	},
 	{
