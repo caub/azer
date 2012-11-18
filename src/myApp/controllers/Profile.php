@@ -8,7 +8,7 @@ use myApp\views\View;
 class Profile {
 
 	
-	function read( $data ) {
+	function read( $data, $params ) {
 		
 		debug_r($data);
 		if (!isset($data['id'])){
@@ -26,7 +26,7 @@ class Profile {
 			$data = (array) $responseObject->dataObject->user;
 		}
 
-		View::render('profile', $data);
+		View::render('profile', $data, $params);
 	}
 	
 	function create( $data ) {
@@ -38,6 +38,11 @@ class Profile {
 	}
 	function update( $data ) {
 
+	}
+	
+	function error ( $data){
+		$this->read($data, array('notification'=>'sorry but not authorized'));
+	
 	}
 	
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace myApp\accessControl;
+namespace myApp\accesscontrol;
 
 /*
  * targetted controller
@@ -20,9 +20,8 @@ class Main {
 	
 	public function __call( $method, $arguments ){
 
-		//debug_r($this->getAuthorizedMethods());
-		if ( is_callable( $this->target, $method) && in_array($method, $this->authorizedMethods) ){
-			
+		if ( is_callable( array($this->target, $method)) && in_array($method, $this->authorizedMethods) ){
+
 			return call_user_func_array(
 				array( $this->target, $method ),
 				$arguments

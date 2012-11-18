@@ -12,7 +12,7 @@ class Search {
 
 	function read( $data ) {
 		debug('gsrg');
-		debug_r($data);
+
 		//sanitize data
 
 		$predicates = Utils::parseQuery($data['q']);
@@ -56,6 +56,7 @@ class Search {
 	function update( $data  ) {
 
 	}
+
 	
 }
 

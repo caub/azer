@@ -8,9 +8,9 @@ use myApp\views\View;
 class Main {
 
 	
-	function read( $data ) {
+	function read( $data, $params = array() ) {
 
-		View::render('main', $data);
+		View::render('main', $data, $params);
 	}
 	
 	function create( $data ) {

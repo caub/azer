@@ -1,0 +1,16 @@
+[
+
+	{
+		"default": [],
+		"login": ["read"],
+		"authentication": ["read"],
+		"registerValidation": ["read"]
+	},
+	{
+		"default": ["read","create","updateHis","deleteHis"]
+	},
+	{
+		"default": ["read","create","updateHis","update","deleteHis","delete","updateRole"]
+	}
+
+]

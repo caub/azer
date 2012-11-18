@@ -1,32 +1,33 @@
 <?php
 
 namespace myApp\routing;
-
+use \lib\jsonloader\JsonToArray;
 
 class Router {
+
 	
 	function __construct() {	
 	}
 	
 	
-	private $routeExpression = '@/(?P<app>\w+)(:?/(?P<page>\w+)(:?/(?P<id>[^/]+))?)?@';
-	
 	function route($uri) {
+		
+		$config = JsonToArray::fetchConfig(  __DIR__ .'/routes.json' );
 			
-		preg_match( $this->routeExpression, $uri, $matches);
+		preg_match( $config['routeExpression'], $uri, $matches);
 		
 		//debug_r($matches);
 
-		$method = 'read'; //by default
+		$method = $config['defaultMethod'];
 		
-		if (isset($_REQUEST['method'])){
+		if (isset($_REQUEST['method'])){ //method comes from query string
 			$method = $_REQUEST['method'];
 			unset($_REQUEST['method']);
 		}
 		
-		$controllerName = isset($matches['page']) ? $matches['page'] : 'main'/* default page */;
+		$controllerName = isset($matches['page']) ? $matches['page'] : $config['defaultController'];
 		
-		if (isset($matches['id'])){
+		if (isset($matches['id'])){ //puts id in the query string, if the router detected one
 			$_REQUEST['id'] = $matches['id'];
 		}
 		
@@ -40,14 +41,13 @@ class Router {
 		$controller = new $controllerName;
 		
 		// Default Access Control for each controller
-		$accessControlList = 
-		 isset($_SESSION['user']->accessControl)? 
-		 	$_SESSION['user']->accessControl:
-			array('default'=>array('read','create','update','delete'));/*for demo, all profiles will have it after*/
+		$rbac = JsonToArray::fetchConfig(  __DIR__ .'/rbac.json' ); /*load role based access control*/
 		
-		$authorizedMethods = array_key_exists($controllerName, $accessControlList)? $accessControlList[$controllerName]:$accessControlList['default'];
+		$role = isset($_SESSION['user']->role[APP])?$_SESSION['user']->role[APP]:2; //for demo, after it will be in profiles
+
+		$authorizedMethods = array_key_exists($controllerName, $rbac[$role])? $rbac[$role][$controllerName]:$rbac[$role]['default'];
 		
-		$ac = new \myApp\accessControl\Main($controller, $authorizedMethods);
+		$ac = new \myApp\accesscontrol\Main($controller, $authorizedMethods);
 
 		//call it
 		try{

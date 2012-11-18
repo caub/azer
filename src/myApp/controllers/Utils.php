@@ -37,8 +37,9 @@ class Utils {
 					$p[trim($keyvalue[0])][] = trim($keyvalue[1]);
 				}
 			}
+			
 			foreach($p as $key=>$value){
-				$preds[$key]=array_unique($preds[$key]);
+				$p[$key]=array_unique($p[$key]);
 				sort($p[$key]);
 			}
 			ksort($p);
