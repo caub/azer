@@ -1,31 +1,29 @@
 <?php
 
 namespace myApp\routing;
-use \lib\jsonloader\JsonToArray;
+
 
 class Router {
 
 	
-	function __construct() {	
+	function __construct( $config ) {
+		$this->config = $config;
 	}
 	
-	
-	function route($uri) {
-		
-		$config = JsonToArray::fetchConfig(  __DIR__ .'/routes.json' );
+	function route($uri, $accessControl) {
 			
-		preg_match( $config['routeExpression'], $uri, $matches);
+		preg_match( $this->config['routeExpression'], $uri, $matches);
 		
 		//debug_r($matches);
 
-		$method = $config['defaultMethod'];
+		$method = $this->config['defaultMethod'];
 		
 		if (isset($_REQUEST['method'])){ //method comes from query string
 			$method = $_REQUEST['method'];
 			unset($_REQUEST['method']);
 		}
 		
-		$controllerName = isset($matches['page']) ? $matches['page'] : $config['defaultController'];
+		$controllerName = isset($matches['page']) ? $matches['page'] : $this->config['defaultController'];
 		
 		if (isset($matches['id'])){ //puts id in the query string, if the router detected one
 			$_REQUEST['id'] = $matches['id'];
@@ -39,13 +37,8 @@ class Router {
 		
 		$controllerName = 'myApp\\controllers\\' . ucwords($controllerName);
 		$controller = new $controllerName;
-		
-		// Default Access Control for each controller
-		$rbac = JsonToArray::fetchConfig(  __DIR__ .'/rbac.json' ); /*load role based access control*/
-		
-		$role = isset($_SESSION['user']->role[APP])?$_SESSION['user']->role[APP]:2; //for demo, after it will be in profiles
 
-		$authorizedMethods = array_key_exists($controllerName, $rbac[$role])? $rbac[$role][$controllerName]:$rbac[$role]['default'];
+		$authorizedMethods = array_key_exists($controllerName, $accessControl)? $accessControl[$controllerName]:$accessControl['default'];
 		
 		$ac = new \myApp\accesscontrol\Main($controller, $authorizedMethods);
 

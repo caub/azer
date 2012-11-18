@@ -20,6 +20,7 @@ function debug_r($obj) {
 
 
 use myApp\routing\Router;
+use \lib\jsonloader\JsonToArray;
 
 require 'autoload.php';
 require __DIR__.'/../lib/autoload.php';
@@ -39,9 +40,14 @@ if (isset($_GET['registration']) && $_GET['registration'] == "ok" ) { //same as 
 	exit();
 }
 
-$router = new Router;
+$config = JsonToArray::fetchConfig(  __DIR__ .'/config/routes.json' );
 
-$router->route($uri);
+$router = new Router( $config );
+
+$rbac = JsonToArray::fetchConfig(  __DIR__ .'/config/rbac.json' ); /*loads role based access control*/
+$userRole = isset($_SESSION['user']->role[APP])?$_SESSION['user']->role[APP]:2; //for demo, after it will be in profiles
+
+$router->route($uri, $rbac[$userRole]);
 
 
 ?>
