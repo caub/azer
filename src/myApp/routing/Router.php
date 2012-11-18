@@ -31,7 +31,7 @@ class Router {
 		}
 		
 		// Authentication Access Control
-		if ( !isset($_SESSION['user']) ){
+		if (!isset($_SESSION['user']) && $controllerName !== 'authentication'){
 			$login = new \myApp\controllers\Login;
 			$login->read();
 		}
