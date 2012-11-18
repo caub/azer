@@ -63,13 +63,4 @@ class Router {
 	}
 	
 	
-	function getAccessList() {
-		if (isset($_SESSION['user'], $_SESSION['user']->accessControl)){
-			return $_SESSION['user']->accessControl;
-		} else if (isset($_SESSION['user'])){
-			return array();
-		}
-	}
-	
-	
 }
