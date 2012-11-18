@@ -1,0 +1,7 @@
+body {
+	background: #e8e8e8 url(../img/noise.png);
+}
+
+.highlighed {
+	background-color: yellow;
+}
