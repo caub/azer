@@ -7,20 +7,10 @@
 <a href="/<?= APP ?>/logout" style="float: right;">Sign out</a>
 
 
-<div style="width: 100%;">
-<div style="position: relative;right: 50%;float: right;">
-<nav style="position: relative;right: 50%;left: 50%;float: left;">
-	<ul>
-		<li style="background-color: #f3f3f3;"><a href="/<?= APP ?>">Home</a></li>
-		<li><a href="/<?= APP ?>/posts">Post</a></li>
-	<ul>
-</nav>
-
-</div>
-</div>
+<?php tabbar(); ?>
 
 
-<div style="margin: 200px auto 0;text-align: center;">
+<div style="margin: 100px auto 0;text-align: center;">
 	
 <form action="/<?= APP ?>/search" id="searchForm">
 	<input name="q" type="search" value="color=blue&color=red&theme=punk | color=yellow&theme=raw" 

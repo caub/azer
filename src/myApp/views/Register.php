@@ -3,12 +3,12 @@
 <? include 'parts/notifications.php'; ?>
 <a href="javascript:history.go(-1)">Back</a>
 
-<h1>Register</h1>
+<h2 style="text-align: center;">Register</h2>
 
 
 <br>
 
-<form action="/<?= APP ?>/register" method="post">
+<form action="/<?= APP ?>/register" method="post" style="text-align: center;">
 
 	<input type="hidden" name="method" value="create">
 	<input type="email" name="email" placeholder="email">

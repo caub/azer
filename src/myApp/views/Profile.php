@@ -2,9 +2,11 @@
 <? include 'parts/notifications.php'; ?>
 
 <a href="javascript:history.go(-1)">Back</a>
-<div style="text-align: center;">
-<h1>Profile</h1>
-</div>
+<?php tabbar(); ?>
+
+<h2 style="text-align: center;">Profile</h2>
+
+
 <pre>
 
 <?= print_r($data); ?>

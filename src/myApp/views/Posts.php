@@ -1,9 +1,10 @@
 <? include 'parts/header.php'; ?>
 <? include 'parts/notifications.php'; ?>
 <a href="javascript:history.go(-1)">Back</a>
-<div style="text-align: center;">
-<h1>Posts</h1>
-</div>
+<?php tabbar(); ?>
+
+<h2 style="text-align: center;">Posts</h2>
+
 
 <pre>
 

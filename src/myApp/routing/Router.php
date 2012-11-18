@@ -29,10 +29,10 @@ class Router {
 			$_REQUEST['id'] = $matches['id'];
 		}
 		
+		$authorizedMethods = array_key_exists($controllerName, $accessControl)? $accessControl[$controllerName]:$accessControl['default'];
+		
 		$controllerName = 'myApp\\controllers\\' . ucwords($controllerName);
 		$controller = new $controllerName;
-
-		$authorizedMethods = array_key_exists($controllerName, $accessControl)? $accessControl[$controllerName]:$accessControl['default'];
 		
 		$ac = new \myApp\accesscontrol\Main($controller, $authorizedMethods);
 

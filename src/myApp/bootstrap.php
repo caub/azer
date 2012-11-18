@@ -40,19 +40,13 @@ if (isset($_GET['registration']) && $_GET['registration'] == "ok" ) { //same as 
 	exit();
 }
 
-// Authentication Access Control
-if (!isset($_SESSION['user']) ){
-
-	$login = new \myApp\controllers\Login;
-	$login->read($_REQUEST);
-}
-
 $config = JsonToArray::fetchConfig(  __DIR__ .'/config/routes.json' );
 
 $router = new Router( $config );
 
 $rbac = JsonToArray::fetchConfig(  __DIR__ .'/config/rbac.json' ); /*loads role based access control*/
-$userRole = isset($_SESSION['user']->role[APP])?$_SESSION['user']->role[APP]:2; //for demo, after it will be in profiles
+$userRole = isset($_SESSION['user']) ? (isset($_SESSION['user']->role[APP])?$_SESSION['user']->role[APP]:2) : 0;
+// the 2 above is for demo, after $_SESSION['user']->role[APP] will be always set in profiles
 
 $router->route($uri, $rbac[$userRole]);
 

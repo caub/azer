@@ -29,7 +29,8 @@ class View {
 	}*/
 	
 	static function render($viewName, $data = array(), $params = array()){ 
-		include __DIR__.'/../views/' . ucwords($viewName). '.php';
+		include __DIR__ . '/parts/tabbar.php';
+		include __DIR__ . '/' .ucwords($viewName). '.php';
 		exit();
 	}
 	

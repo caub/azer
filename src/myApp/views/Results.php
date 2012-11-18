@@ -2,17 +2,16 @@
 <? include 'parts/notifications.php'; ?>
 
 <a href="/<?= APP ?>">Back</a>
-<br>
 
-<div style="text-align: center;">
+<?php tabbar(); ?>
 
-<h1>Results </h1>
-<form action="/<?= APP ?>/search" id="searchForm">
+<h2 style="text-align: center;">Results </h2>
+<form style="text-align: center;" action="/<?= APP ?>/search" id="searchForm">
 	<input name="q" type="search" value="<?= $params['title'] ?>" 
 	style="width: 600px;height: 27px;padding-left: 7px;font-size: 16px;">
 	<input type="submit" value="Search" style="height: 27px;">
 </form>
-</div>
+
 
 
 <ul  style="margin: 40px auto 0;width: 600px;">
