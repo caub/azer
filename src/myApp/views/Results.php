@@ -3,14 +3,19 @@
 
 <a href="/<?= APP ?>">Back</a>
 <br>
+
+<div style="text-align: center;">
+
 <h1>Results </h1>
 <form action="/<?= APP ?>/search" id="searchForm">
 	<input name="q" type="search" value="<?= $params['title'] ?>" 
 	style="width: 600px;height: 27px;padding-left: 7px;font-size: 16px;">
 	<input type="submit" value="Search" style="height: 27px;">
 </form>
+</div>
 
-<ul>
+
+<ul  style="margin: 40px auto 0;width: 600px;">
 <? if(!empty($data)): ?>
 <? foreach($data as $item): ?>
   <li>

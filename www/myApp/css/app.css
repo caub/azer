@@ -5,3 +5,23 @@ body {
 .highlighed {
 	background-color: yellow;
 }
+
+nav ul {
+	list-style: none;
+	padding: 0;
+	height: 27px;
+	background-color: #e2e2e2;
+}
+
+nav ul li {
+	float: left;
+	height: 27px;
+	line-height: 27px;
+}
+
+nav ul li a {
+	display: block;
+	padding: 0 20px;
+	text-decoration: none;
+}
+

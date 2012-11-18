@@ -10,22 +10,30 @@ use myApp\views\View;
 class Posts {
 
 	function read( $data, $params = array() ) {
-		debug_r($data);
-		// Building the Authentication request
-		$request = new Request;
-		$responsejSon = $request->read("PublishHandler", $data);
-
-		$responseObject = json_decode($responsejSon);
-
-		if ($responseObject->status==200){
-			$id = $data['id'];
-			$data = (array) $responseObject->dataObject->details;
-			$data['id'] = $id;
+		if (isset($data['id'])){
+			debug_r($data);
+			// Building the Authentication request
+			$request = new Request;
+			$responsejSon = $request->read("PublishHandler", $data);
+			
+			$responseObject = json_decode($responsejSon);
+			
+			if ($responseObject->status==200){
+				$id = $data['id'];
+				$data = (array) $responseObject->dataObject->details;
+				$data['id'] = $id;
+			} else {
+				$params = array('notification'=>'no content');
+			}
+			View::render('posts', $data, $params);
+				
 		} else {
-			$params = array('notification'=>'no content');
+			
+			View::render('postForm', $data, $params);
 		}
-
-		View::render('posts', $data, $params);
+		
+		
+		
 	}
 	
 	function create( $data ) {
@@ -62,11 +70,12 @@ class Posts {
 		debug_r($responseObject);
 		if ($responseObject->status==200){
 			$params = array('notification'=>'success');
+			header("Location: /".APP.'/posts/'.$responseObject->dataObject->id);
+			exit();
 		} else {
 			$params = array('notification'=>$responseObject->description);
 		}
 		
-		View::render('main', $data, $params);
 
 	}
 	function delete( $data ) {
