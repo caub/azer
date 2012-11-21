@@ -1,6 +1,6 @@
 <?php
 
-function tabbar($active = 'main'){
+function tabbar($active = ''){
 	?>
 	
 <div style="width: 260px;margin: auto;">

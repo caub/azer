@@ -3,7 +3,7 @@
 <? include 'parts/notifications.php'; ?>
 
 
-<?php tabbar(); ?>
+<?php tabbar('main'); ?>
 
 
 <div style="margin: 100px auto 0;text-align: center;">

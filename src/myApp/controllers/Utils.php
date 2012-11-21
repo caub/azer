@@ -45,7 +45,7 @@ class Utils {
 			ksort($p);
 			$res[] = $p;
 		}
-		
+		debug_r($res);
 		return $res;
 	}
 	
