@@ -1,7 +1,6 @@
 
 <? include 'parts/header.php'; ?>
 <? include 'parts/notifications.php'; ?>
-<a href="javascript:history.go(-1)">Back</a>
 
 <h2 style="text-align: center;">Register</h2>
 

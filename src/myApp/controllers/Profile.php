@@ -5,14 +5,15 @@ namespace myApp\controllers;
 use lib\database\Request;
 use myApp\views\View;
 
-class Profile {
+class Profile extends Base {
 
 	
-	function read( $data, $params ) {
+	function read( $data, $params = array() ) {
 		
 		debug_r($data);
 		if (!isset($data['id'])){
-			header('Location:/'.APP.'/profile/'.trim($_SESSION['user']->id));
+			$data['id'] = trim($_SESSION['user']->id);
+			//header('Location:/'.APP.'/profile/'.trim($_SESSION['user']->id));
 		}
 
 		// Building the Authentication request
@@ -26,7 +27,11 @@ class Profile {
 			$data = (array) $responseObject->dataObject->user;
 		}
 
-		View::render('profile', $data, $params);
+		if ($data['id'] == trim($_SESSION['user']->id)){
+			View::render('myProfile', $data, $params);
+		} else {
+			View::render('profile', $data, $params);
+		}
 	}
 	
 	function create( $data ) {
@@ -40,10 +45,6 @@ class Profile {
 
 	}
 	
-	function error ( $data){
-		$this->read($data, array('notification'=>'sorry but not authorized'));
-	
-	}
 	
 }
 

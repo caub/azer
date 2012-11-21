@@ -1,11 +1,11 @@
 <? include 'parts/header.php'; ?>
 <? include 'parts/notifications.php'; ?>
-<a href="javascript:history.go(-1)">Back</a>
+
 <?php tabbar(); ?>
 
-<h2 style="text-align: center;">Posts</h2>
-
-
+<div style="text-align: center; margin-top: 75px;">
+	
+</div>
 <pre>
 
 <?= print_r($data); ?>

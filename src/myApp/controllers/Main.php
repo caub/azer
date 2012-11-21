@@ -5,7 +5,7 @@ namespace myApp\controllers;
 
 use myApp\views\View;
 
-class Main {
+class Main extends Base {
 
 	
 	function read( $data, $params = array() ) {
@@ -22,11 +22,7 @@ class Main {
 	function update( $data ) {
 
 	}
-	
-	function error ( $data){
-		$this->read($data, array('notification'=>'sorry but not authorized'));
-	
-	}
+
 	
 }
 

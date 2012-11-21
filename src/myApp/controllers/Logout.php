@@ -6,10 +6,10 @@ use lib\database\Request;
 use myApp\views\View;
 
 
-class Logout {
+class Logout extends Base {
 
 
-	function read( $data) {
+	function read( $data, $params = array() ) {
 		
 		$request = new Request();
 		$responsejSon = $request->delete("v2/SessionRequestHandler", $data);
@@ -26,7 +26,6 @@ class Logout {
 	}
 	
 	function delete( $data  ) {
-		
 
 	}
 	

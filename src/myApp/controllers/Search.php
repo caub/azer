@@ -7,10 +7,10 @@ use lib\database\Request;
 use myApp\views\View;
 
 
-class Search {
+class Search extends Base {
 
 
-	function read( $data ) {
+	function read( $data, $params = array() ) {
 		debug('gsrg');
 
 		//sanitize data
@@ -45,7 +45,6 @@ class Search {
 	}
 	
 	function create( $data ) {
-
 
 	}
 	

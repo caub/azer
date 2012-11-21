@@ -1,12 +1,11 @@
 <? include 'parts/header.php'; ?>
 <? include 'parts/notifications.php'; ?>
 
-<a href="/<?= APP ?>">Back</a>
 
 <?php tabbar(); ?>
 
-<h2 style="text-align: center;">Results </h2>
-<form style="text-align: center;" action="/<?= APP ?>/search" id="searchForm">
+
+<form style="text-align: center;margin-top: 75px;" action="/<?= APP ?>/search" id="searchForm">
 	<input name="q" type="search" value="<?= $params['title'] ?>" 
 	style="width: 600px;height: 27px;padding-left: 7px;font-size: 16px;">
 	<input type="submit" value="Search" style="height: 27px;">

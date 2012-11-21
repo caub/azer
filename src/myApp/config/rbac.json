@@ -1,17 +1,20 @@
-[
+{
 
-	{
+	"0": {
 		"default": [],
 		"login": ["read"],
 		"logout": ["read"],
 		"register": ["read"],
-		"registerValidation": ["read"]
+		"registerValidation": ["read"],
+		"fallback": "errorAuthentication"
 	},
-	{
-		"default": ["read","create","updateHis","deleteHis"]
+	"1": {
+		"default": ["read","create","updateHis","deleteHis"],
+		"fallback": "error"
 	},
-	{
-		"default": ["read","create","updateHis","update","deleteHis","delete","updateRole"]
+	"2": {
+		"default": ["read","create","updateHis","update","deleteHis","delete","updateRole"],
+		"fallback": "error"
 	}
 
-]
+}

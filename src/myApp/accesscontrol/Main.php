@@ -10,16 +10,17 @@ namespace myApp\accesscontrol;
 class Main {
 	
 	protected $authorizedMethods = null;
-	protected $acl = null;
+	protected $fallback = null;
+	protected $target = null;
 	
-	public function __construct( $target, $authorizedMethods){
+	public function __construct( $target, $authorizedMethods, $fallback){
 		$this->target = $target;
 		$this->authorizedMethods = $authorizedMethods;
-	
+		$this->fallback = $fallback;
 	}
 	
 	public function __call( $method, $arguments ){
-
+		
 		if ( is_callable( array($this->target, $method)) && in_array($method, $this->authorizedMethods) ){
 
 			return call_user_func_array(
@@ -28,7 +29,11 @@ class Main {
 			);
 		} else {
 			//debug_r($arguments);
-			$this->target->error($arguments[0]);
+
+			return call_user_func_array(
+				array( $this->target, $this->fallback ),
+				$arguments
+			);
 		}
 	}
 	

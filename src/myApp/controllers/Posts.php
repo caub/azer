@@ -7,7 +7,7 @@ use myApp\models\Bean;
 use lib\database\Request;
 use myApp\views\View;
 
-class Posts {
+class Posts extends Base {
 
 	function read( $data, $params = array() ) {
 		if (isset($data['id'])){
@@ -100,11 +100,7 @@ class Posts {
 	function update( $data ) {
 
 	}
-	
-	function error ( $data){
-		$this->read($data, array('notification'=>'sorry but not authorized'));
 
-	}
 	
 }
 

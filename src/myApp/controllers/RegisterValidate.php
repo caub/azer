@@ -7,10 +7,10 @@ use lib\database\Request;
 use myApp\views\View;
 
 
-class RegisterValidate {
+class RegisterValidate extends Base {
 
 
-	function read( $data) {
+	function read( $data, $params = array() ) {
 
 		//completes registration process
 		
@@ -29,15 +29,12 @@ class RegisterValidate {
 		
 	}
 	
-	function create( $data ) {
-		
-		
+	function create( $data ) {	
 
 	}
 	
 	function delete( $data  ) {
 		
-
 	}
 	
 	function update( $data  ) {

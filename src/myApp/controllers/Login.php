@@ -7,10 +7,10 @@ use lib\database\Request;
 use myApp\views\View;
 
 
-class Login {
+class Login extends Base {
 
 
-	function read( $data = array()) {
+	function read( $data = array(), $params = array() ) {
 
 		if ($_SERVER['REQUEST_METHOD'] == "POST") { //Auth attempt
 			if ( !empty($data['password']) ){
@@ -57,7 +57,6 @@ class Login {
 	}
 	
 	function delete( $data  ) {
-		
 
 	}
 	

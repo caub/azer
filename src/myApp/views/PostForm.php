@@ -2,11 +2,6 @@
 <? include 'parts/header.php'; ?>
 <? include 'parts/notifications.php'; ?>
 
-<a href="/<?= APP ?>/profile"><?= substr($_SESSION['user']->id, 6) ?></a> 
-
-<a href="/<?= APP ?>/logout" style="float: right;">Sign out</a>
-
-
 <?php tabbar('post'); ?>
 
 

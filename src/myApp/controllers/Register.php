@@ -7,10 +7,10 @@ use lib\database\Request;
 use myApp\views\View;
 
 
-class Register {
+class Register extends Base {
 
 
-	function read( $data) {
+	function read( $data, $params = array() ) {
 		View::render('register', $data);
 		
 		
@@ -62,7 +62,6 @@ class Register {
 	}
 	
 	function delete( $data  ) {
-		
 
 	}
 	

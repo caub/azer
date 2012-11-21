@@ -34,7 +34,7 @@ class Router {
 		$controllerName = 'myApp\\controllers\\' . ucwords($controllerName);
 		$controller = new $controllerName;
 		
-		$ac = new \myApp\accesscontrol\Main($controller, $authorizedMethods);
+		$ac = new \myApp\accesscontrol\Main($controller, $authorizedMethods, $accessControl['fallback']);
 
 		//call it
 		try{
