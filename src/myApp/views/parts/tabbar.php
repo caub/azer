@@ -2,20 +2,34 @@
 
 function tabbar($active = ''){
 	?>
-	
-<div style="width: 260px;margin: auto;">
-	<nav style="position: relative;float: left; font-weight: bold;">
-		<ul>
-			<li <?= $active === 'main'?'style="background-color: #f3f3f3;"':'' ?>><a href="/<?= APP ?>">Home</a></li>
-			<li <?= $active === 'myprofile'?'style="background-color: #f3f3f3;"':'' ?>><a href="/<?= APP ?>/profile">My profile</a></li>
-			<li <?= $active === 'post'?'style="background-color: #f3f3f3;"':'' ?>><a href="/<?= APP ?>/posts">Post</a></li>
-		<ul>
-	</nav>
-</div>
-<br>
+<header>
+<nav>
+<a href="/<?= APP ?>" id="navLanding" <?= $active === 'main'?'class="selected"':'' ?>>Articles</a>
+<a href="/<?= APP ?>/profile" id="navTour" <?= $active === 'myprofile'?'class="selected"':'' ?>>My profile</a>
+<a href="http://138.96.242.20/wiki/indexes" target="_blank">Documentation</a>
+</nav>
+</header>
+
+
+
 <?php 
-	
-	
+
+}
+
+function tabbarFlex($active = ''){
+	?>
+<header style="position: absolute;">
+<nav>
+<a href="/<?= APP ?>" id="navLanding" <?= $active === 'main'?'class="selected"':'' ?>>Articles</a>
+<a href="/<?= APP ?>/profile" id="navTour" <?= $active === 'myprofile'?'class="selected"':'' ?>>My profile</a>
+<a href="http://138.96.242.20/wiki/indexes" target="_blank">Documentation</a>
+</nav>
+</header>
+
+
+
+<?php 
+
 }
 
 ?>

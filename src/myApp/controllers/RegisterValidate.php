@@ -23,7 +23,7 @@ class RegisterValidate extends Base {
 		if ($responseObject->status==200){
 			$params['notification'] = 'account validated';
 		} else {
-			$params['notification'] = 'try again';
+			$params['notification'] = $responseObject->description;
 		}
 		View::render('login', $data, $params);
 		

@@ -1,16 +1,20 @@
 <? include 'parts/header.php'; ?>
-<? include 'parts/notifications.php'; ?>
+
 
 <?php tabbar(); ?>
 
-<div style="text-align: center; margin-top: 75px;">
-	
-</div>
+<? include 'parts/notifications.php'; ?>
 
+<div class="content">
+
+<br><br>
+<h3>Profile of <?= $data['id'] ?></h3>
 <pre>
 
 <?= print_r($data); ?>
 </pre>
+
+</div>
 
 
 

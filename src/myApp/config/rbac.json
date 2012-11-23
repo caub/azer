@@ -4,7 +4,7 @@
 		"default": [],
 		"login": ["read"],
 		"logout": ["read"],
-		"register": ["read"],
+		"register": ["read", "create"],
 		"registerValidation": ["read"],
 		"fallback": "errorAuthentication"
 	},

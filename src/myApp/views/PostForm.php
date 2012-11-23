@@ -2,12 +2,11 @@
 <? include 'parts/header.php'; ?>
 <? include 'parts/notifications.php'; ?>
 
+
 <?php tabbar('post'); ?>
 
-
-<div style="margin: 100px auto 0;text-align: center;">
-
-
+<div style="text-align: center;">
+<br><br>
 <form action="/<?= APP ?>/posts" method="post" id="postForm">
 
 	<input type="hidden" name="method" value="create">
@@ -31,6 +30,5 @@
 </form>
 
 </div>
-
 
 <? include 'parts/footer.php'; ?>

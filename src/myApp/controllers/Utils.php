@@ -6,23 +6,6 @@ namespace myApp\controllers;
 class Utils {
 	
 	
-	static function formatPredicates($keys, $vals){
-		$preds = array();
-		
-		foreach ($keys as $i=>$key){
-			
-			if (trim($key) !== ''){
-				$preds[trim($key)][] = trim($vals[$i]);
-			}
-		}
-		foreach($preds as $key=>$value){
-			$preds[$key]=array_unique($preds[$key]);
-			sort($preds[$key]);
-		}
-		ksort($preds);
-		return $preds;
-	}
-	
 	static function parseQuery($q){
 		$parts = explode('|', $q);
 		
@@ -47,6 +30,10 @@ class Utils {
 		}
 		debug_r($res);
 		return $res;
+	}
+	
+	static function sortByTime($a, $b){
+		return $a->time < $b->time;
 	}
 	
 	

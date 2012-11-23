@@ -1,31 +1,38 @@
-
 <? include 'parts/header.php'; ?>
+
+
+<?php tabbarFlex('main'); ?>
+
 <? include 'parts/notifications.php'; ?>
 
+<div class="main">
 
-<?php tabbar('main'); ?>
-
-
-<div style="margin: 100px auto 0;text-align: center;">
 	
-<form action="/<?= APP ?>/search" id="searchForm">
-	<input name="q" type="search" value="color=blue&color=red&theme=punk | color=yellow&theme=raw" 
-	style="width: 600px;height: 27px;padding-left: 7px;font-size: 16px;margin-bottom: 10px;">
-	<br>
-	<input type="submit" value="Search" style="height: 27px;">
-</form>
-<br>
-<div style="width: 700px;text-align: left;padding: 5px;margin: 10px auto; border: thin solid gray;">
-	<p>Search queries are formed by key-value pairs:<br>
-	ex: <b><em>color=blue</em></b> finds all contents that have <b>blue</b> as a <b>color</b> keyword<br></p>
-	<p>Then you can combine several queries with <b>AND</b>:<br>
-	ex: <b><em>color=blue & theme=punk</em></b> finds all contents with both conditions verified<br></p>
-	<p>or with <b>OR</b>:<br>
-	ex: <b><em>color=blue | theme=punk</em></b> finds all contents with one of the conditions verified</p>
-	
-	<p><u>note:</u> This is for demo, in practise, key will be set in an application and bound to a model. A user will set values</p>
+	<form style="text-align: center;margin-top: 75px;" action="/<?= APP ?>/search" id="searchForm">
+		<input name="q" type="search" value="<?= $params['title'] ?>" 
+		style="width: 70%;min-width:300px;height: 27px;padding-left: 7px;font-size: 16px;">
+		<input type="submit" value="Search" style="height: 27px;">
 
+		<p>searches are formed like that: <br><i style="letter-spacing: 1px;">color=blue&color=red&theme=punk | foo=bar&..=..</i></p>
+
+	</form>
+	
+	
+	
+	<hr>
+	<form action="/<?= APP ?>/posts" method="post" id="postForm" style="text-align: center;margin-bottom: 50px;">
+		<h3 style="text-align: center;">Post an article:</h3>
+		<input type="hidden" name="method" value="create">
+		keywords: <input name="q" type="search" value="color=blue & color=red & theme=punk | color=yellow & theme=raw" 
+			style="width: 70%;min-width:300px;padding-left: 7px;">
+		
+		<br><br>
+		<textarea name="text" rows="3" style="width:600px;">blabla.....</textarea>
+		<br>
+		<input type="submit" value="Post" style="height: 27px;">
+	</form>
 </div>
-<div style="text-align: center;"><a href="http://138.96.242.20/wiki/indexes" >API documentation</a></div>
+
+
 
 <? include 'parts/footer.php'; ?>

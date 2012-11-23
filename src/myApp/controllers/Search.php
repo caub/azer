@@ -35,6 +35,8 @@ class Search extends Base {
 		debug_r($responseObject);
 		if ($responseObject->status==200){
 			$data = (array) $responseObject->dataObject->results;
+			usort($data, 'myApp\controllers\Utils::sortByTime');
+			
 		} else {
 			$data = array();
 			$params['notification']='no results';

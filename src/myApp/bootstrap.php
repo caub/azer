@@ -17,8 +17,6 @@ function debug_r($obj) {
 	debug(print_r($obj, true));
 }
 
-
-
 use myApp\routing\Router;
 use \lib\jsonloader\JsonToArray;
 
@@ -31,11 +29,7 @@ session_start();
 
 $uri =  isset( $_SERVER['SCRIPT_URL'] ) ? $_SERVER['SCRIPT_URL'] : '/'.APP;
 
-if (strpos($uri, '/application') === 0 ){ //nasty but used for registration mails
-	header('Location:'.substr($uri, strlen('/application')).(!empty($_SERVER['QUERY_STRING'])?'?'.$_SERVER['QUERY_STRING']:''));
-	exit();
-}
-if (isset($_GET['registration']) && $_GET['registration'] == "ok" ) { //same as above
+if (isset($_GET['registration']) && $_GET['registration'] == "ok" ) { //nasty redirection... for registration mails
 	header('Location:/'.APP.'/registerValidate?accessToken='.$_GET['accessToken']);
 	exit();
 }

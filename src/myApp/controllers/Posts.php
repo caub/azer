@@ -39,7 +39,7 @@ class Posts extends Base {
 	function create( $data ) {
 		
 		//sanitize data
-		$predicates = Utils::formatPredicates($data['keys'], $data['vals']);
+		$predicates = Utils::parseQuery($data['q']);
 		
 		$data['predicates'] = json_encode(
 			$predicates
