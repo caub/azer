@@ -5,7 +5,7 @@
 
 <? include 'parts/notifications.php'; ?>
 
-<div class="content">
+<div class="main flexCenterVertical">
 
 <br><br>
 <h3>Profile of <?= $data['id'] ?></h3>

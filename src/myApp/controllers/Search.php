@@ -14,11 +14,10 @@ class Search extends Base {
 		debug('gsrg');
 
 		//sanitize data
-
 		$predicates = Utils::parseQuery($data['q']);
 
 		$data['predicates'] = json_encode($predicates);
-		debug_r($data['predicates']);
+		//debug_r($data['predicates']);
 		
 		$params = array();
 		$params['predicates'] = $predicates;
@@ -32,7 +31,7 @@ class Search extends Base {
 
 		$responseObject = json_decode($responsejSon);
 		debug('--');
-		debug_r($responseObject);
+		//debug_r($responseObject);
 		if ($responseObject->status==200){
 			$data = (array) $responseObject->dataObject->results;
 			usort($data, 'myApp\controllers\Utils::sortByTime');

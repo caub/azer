@@ -1,20 +1,20 @@
 <? include 'parts/header.php'; ?>
 
 
-<?php tabbar('main'); ?>
+<?php tabbar('articles'); ?>
 
 <? include 'parts/notifications.php'; ?>
 
-<div>
+<div class="main flexCenterVertical">
 
-	
-	<form style="text-align: center;margin-top: 30px;" action="/<?= APP ?>/search" id="searchForm">
-		<input name="q" type="search" value="<?= $params['title'] ?>" 
-		style="min-width:450px;height: 27px;padding-left: 7px;font-size: 16px;">
+	<br>
+	<form style="text-align: center;" action="/<?= APP ?>/search">
+		<input name="q" type="search" value="<?= $params['title'] ?>" placeholder="color=blue&color=red" 
+		style="min-width:350px;height: 27px;padding-left: 7px;font-size: 16px;">
 		<input type="submit" value="Search" style="height: 27px;vertical-align: 0%;">
 	</form>
 	
-	<ul  style="margin: 40px auto 0;width: 600px;">
+	<ul style="padding-left: 1em;padding-top: 1em;">
 	<? if(!empty($data)): ?>
 	<? foreach($data as $item): ?>
 	  <li>

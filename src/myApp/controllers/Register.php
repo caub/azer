@@ -54,7 +54,7 @@ class Register extends Base {
 			}
 			View::render('login', $data, $params);
 		} else {
-			$params['notification'] = 'not empty please';
+			$params['notification'] = 'no empty fields please';
 			View::render('register', $data, $params);
 		}
 		

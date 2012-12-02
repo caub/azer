@@ -22,7 +22,7 @@ class Base implements IController{
 	
 	function errorAuthentication ( $data){
 		//$this->read($data, array('notification'=>'please log in'));
-		header('Location: ./'.APP.'/login');
+		header('Location:/'.APP.'/login');
 		
 	}
 	function error ( $data){

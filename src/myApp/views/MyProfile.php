@@ -1,13 +1,13 @@
 <? include 'parts/header.php'; ?>
-<? include 'parts/notifications.php'; ?>
-
 
 <?php tabbar('myprofile'); ?>
 
-<div class="content">
+<? include 'parts/notifications.php'; ?>
+
+<div class="main flexCenterVertical">
 <br><br>
 <div style="text-align: center;">
-	<a href="/<?= APP ?>/logout">Sign out</a>
+	<a href="/<?= APP ?>/logout">Log out</a>
 </div>
 
 

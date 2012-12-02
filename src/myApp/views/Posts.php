@@ -1,14 +1,12 @@
 <? include 'parts/header.php'; ?>
 
-<?php tabbar('main'); ?>
+<?php tabbar('articles'); ?>
 <? include 'parts/notifications.php'; ?>
 
 
-<div class="content">
+<div class="main flexCenterVertical">
 
-
-<br><br>
-<h3>Post with id: <?= $data['id'] ?></h3>
+<h3>Post id: <?= $data['id'] ?></h3>
 <pre>
 
 <?= print_r($data); ?>

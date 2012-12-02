@@ -10,30 +10,23 @@ use myApp\views\View;
 class Posts extends Base {
 
 	function read( $data, $params = array() ) {
-		if (isset($data['id'])){
-			debug_r($data);
-			// Building the Authentication request
-			$request = new Request;
-			$responsejSon = $request->read("PublishHandler", $data);
-			
-			$responseObject = json_decode($responsejSon);
-			
-			if ($responseObject->status==200){
-				$id = $data['id'];
-				$data = (array) $responseObject->dataObject->details;
-				$data['id'] = $id;
-			} else {
-				$params = array('notification'=>'no content');
-			}
-			View::render('posts', $data, $params);
-				
+
+		debug_r($data);
+		// Building the Authentication request
+		$request = new Request;
+		$responsejSon = $request->read("PublishHandler", $data);
+		
+		$responseObject = json_decode($responsejSon);
+		
+		if ($responseObject->status==200){
+			$id = $data['id'];
+			$data = (array) $responseObject->dataObject->details;
+			$data['id'] = $id;
 		} else {
-			
-			View::render('postForm', $data, $params);
+			$params = array('notification'=>'no content');
 		}
-		
-		
-		
+		View::render('posts', $data, $params);
+
 	}
 	
 	function create( $data ) {

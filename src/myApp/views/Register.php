@@ -5,15 +5,15 @@
 <nav>
 <a href="/<?= APP ?>/login" id="navLanding">Log in</a>
 <a href="/<?= APP ?>/register" id="navTour" class="selected">Register</a>
-<a href="http://138.96.242.20/wiki/indexes" target="_blank">Documentation</a>
+<a href="/<?= APP ?>/test">Test area</a>
 </nav>
 </header>
 
 <? include 'parts/notifications.php'; ?>
 
-<div style="margin-top: 175px;">
+<div class="main flexCenterVertical">
 	
-	<form action="/<?= APP ?>/register" method="post" style="text-align: center;">
+	<form action="/<?= APP ?>/register" method="post" id="loginForm" style="text-align: center;">
 	
 		<input type="hidden" name="method" value="create" >
 		<input type="email" name="email" placeholder="email" style="height: 24px;padding-left: 7px;font-size: 16px;">

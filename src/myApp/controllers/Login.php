@@ -33,7 +33,6 @@ class Login extends Base {
 					debug_r($responseObject);
 					if ($responseObject->status==200){
 						$_SESSION['user'] = (object) array_map('trim', (array) $responseObject->dataObject->user);
-						$_SESSION['user']->id = $data['id']; // gonna fix it in profileRH read
 						$_SESSION['accessControl'] = array('read', 'create', 'update', 'delete');
 						header("Location: /".APP);
 						exit();

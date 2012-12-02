@@ -7,6 +7,7 @@
 	<title><?= APPLICATION_NAME ?></title> 
 			
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	
 	<!-- CSS -->
 	<link href="/application/myApp/css/app.css" rel="stylesheet" />
@@ -14,8 +15,9 @@
 	<!-- JS -->
 	<script src="/lib/jquery/jquery-1.8.2.min.js"></script>
 	<script src="/application/myApp/javascript/app.js"></script>
+	
 
 </head>
 		
-<body>
+<body class="flexCenterVertical">
 

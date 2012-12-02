@@ -10,9 +10,8 @@ class Profile extends Base {
 	
 	function read( $data, $params = array() ) {
 		
-		debug_r($data);
 		if (!isset($data['id'])){
-			$data['id'] = trim($_SESSION['user']->id);
+			$data['id'] = $_SESSION['user']->id;
 			//header('Location:/'.APP.'/profile/'.trim($_SESSION['user']->id));
 		}
 
@@ -22,12 +21,12 @@ class Profile extends Base {
 
 		$responseObject = json_decode($responsejSon);
 		debug('--');
-		debug_r($responseObject);
+		//debug_r($responseObject);
 		if ($responseObject->status==200){
 			$data = (array) $responseObject->dataObject->user;
 		}
 
-		if ($data['id'] == trim($_SESSION['user']->id)){
+		if (trim($data['id']) == trim($_SESSION['user']->id)){
 			View::render('myProfile', $data, $params);
 		} else {
 			View::render('profile', $data, $params);

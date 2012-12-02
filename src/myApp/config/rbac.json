@@ -3,9 +3,9 @@
 	"0": {
 		"default": [],
 		"login": ["read"],
-		"logout": ["read"],
+		"test": ["read"],
 		"register": ["read", "create"],
-		"registerValidation": ["read"],
+		"registerValidate": ["read"],
 		"fallback": "errorAuthentication"
 	},
 	"1": {
