@@ -5,7 +5,7 @@ namespace myApp\controllers;
 
 //use myApp\views\View;
 
-class Base implements IController{
+class Base {
 
 	
 	function read( $data, $params = array() ) {

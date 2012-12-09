@@ -2,14 +2,16 @@
 
 namespace myApp\controllers;
 
+use myApp\models\Bean;
+use lib\database\BackendRequest;
 use myApp\views\View;
 
 
-class Post extends Base {
+class Map extends Base {
 
 
 	function read( $data, $params = array() ) {
-		View::render('postForm', $data, $params);
+		View::render('map', $data);
 	}
 	
 	function create( $data ) {

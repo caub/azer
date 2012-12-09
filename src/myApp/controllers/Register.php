@@ -3,7 +3,7 @@
 namespace myApp\controllers;
 
 use myApp\models\Bean;
-use lib\database\Request;
+use lib\database\BackendRequest;
 use myApp\views\View;
 
 
@@ -34,7 +34,7 @@ class Register extends Base {
 			unset($data['code']);
 			unset($data['password']);
 			
-			$request = new Request();
+			$request = new BackendRequest();
 			$responsejSon = $request->create("v2/AuthenticationRequestHandler", 
 				array(
 					'application' => APPLICATION_NAME,

@@ -2,7 +2,7 @@
 
 namespace myApp\controllers;
 
-use lib\database\Request;
+use lib\database\BackendRequest;
 use myApp\views\View;
 
 
@@ -11,7 +11,7 @@ class Logout extends Base {
 
 	function read( $data, $params = array() ) {
 		
-		$request = new Request();
+		$request = new BackendRequest();
 		$responsejSon = $request->delete("v2/SessionRequestHandler", $data);
 		
 		session_destroy();

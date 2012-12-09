@@ -33,6 +33,19 @@
 	</ul>
 	<br>
 	<br>
+	<input type="button" value="Post an article" onclick="$('#postform').toggle();window.scrollBy(0,400);">
+	<form id="postform" action="/<?= APP ?>/posts" method="post" style="display: none;">
+	<input type="hidden" name="method" value="create">
+	keywords: <input name="q" type="search" value="color=blue & color=red & theme=punk | type=library & theme=raw" 
+		style="width: 70%;min-width:300px;padding-left: 7px;">
+	
+	<br><br>
+	<textarea name="text" rows="10" cols="60">blabla.....</textarea>
+
+	<input type="submit" value="Post" style="height: 27px;vertical-align: bottom;">
+	<br>
+	<br>
+</form>
 </div>
 
 

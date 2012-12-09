@@ -3,7 +3,7 @@
 namespace myApp\controllers;
 
 use myApp\models\Bean;
-use lib\database\Request;
+use lib\database\BackendRequest;
 use myApp\views\View;
 
 
@@ -17,7 +17,7 @@ class Login extends Base {
 				$data['login']	= trim($data['login']);
 				$data['password']	= hash("sha512", $data['password']); //at least salt..
 			
-				$request = new Request();
+				$request = new BackendRequest();
 				$responsejSon = $request->read("v2/AuthenticationRequestHandler", $data);
 			
 				$responseObject = json_decode($responsejSon);

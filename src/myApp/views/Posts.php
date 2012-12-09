@@ -7,11 +7,11 @@
 <div class="main flexCenterVertical">
 
 <h3>Post id: <?= $data['id'] ?></h3>
-<pre>
-
-<?= print_r($data); ?>
-
-</pre>
+<div>
+<?php foreach ($data as $k=>$v): ?>
+	<?= $k ?> => <?= $v ?><br>
+<?php endforeach; ?>
+</div>
 
 <a href="/<?= APP ?>/posts/<?= urlencode(trim($data['id'])) ?>?method=delete">delete #<?= $data['id'] ?></a>
 

@@ -3,7 +3,7 @@
 namespace myApp\controllers;
 
 use myApp\models\Bean;
-use lib\database\Request;
+use lib\database\BackendRequest;
 use myApp\views\View;
 
 
@@ -12,43 +12,14 @@ class Main extends Base {
 	
 	function read( $data, $params = array() ) {
 
-		debug('gsrg');
-		$params['title'] = '';
-
-		if (!isset($data['q'])){ //nevermind just show the page
-			$data = array();
-			View::render('main', $data, $params);
-		}
-		//sanitize data
-
-		$predicates = Utils::parseQuery($data['q']);
-
-		$data['predicates'] = json_encode($predicates);
-		debug_r($data['predicates']);
-		
-		$params = array();
-		$params['predicates'] = $predicates;
-		$params['title'] = $data['q'];
-		
-		//don't flood with useless params
-		unset($data['q']);
-		
-		$request = new Request;
-		$responsejSon = $request->read("PublishHandler", $data);
-
+		$request = new BackendRequest;
+		$responsejSon = $request->read("v2/ProfileRequestHandler", array('id' => $_SESSION['user']->id) );
 		$responseObject = json_decode($responsejSon);
-		debug('--');
-		debug_r($responseObject);
 		if ($responseObject->status==200){
-			$data = (array) $responseObject->dataObject->results;
-			usort($data, 'myApp\controllers\Utils::sortByTime');
-			
-		} else {
-			$data = array();
-			$params['notification']='no results';
+			$data = (array) $responseObject->dataObject->user;
 		}
-
-		View::render('results', $data, $params);
+		
+		View::render('main', $data, $params);
 		
 	}
 	

@@ -2,7 +2,7 @@
 
 namespace myApp\controllers;
 
-use lib\database\Request;
+use lib\database\BackendRequest;
 use myApp\views\View;
 
 class Profile extends Base {
@@ -12,11 +12,9 @@ class Profile extends Base {
 		
 		if (!isset($data['id'])){
 			$data['id'] = $_SESSION['user']->id;
-			//header('Location:/'.APP.'/profile/'.trim($_SESSION['user']->id));
 		}
 
-		// Building the Authentication request
-		$request = new Request;
+		$request = new BackendRequest;
 		$responsejSon = $request->read("v2/ProfileRequestHandler", $data);
 
 		$responseObject = json_decode($responsejSon);
@@ -25,12 +23,8 @@ class Profile extends Base {
 		if ($responseObject->status==200){
 			$data = (array) $responseObject->dataObject->user;
 		}
+		View::render('profile', $data, $params);
 
-		if (trim($data['id']) == trim($_SESSION['user']->id)){
-			View::render('myProfile', $data, $params);
-		} else {
-			View::render('profile', $data, $params);
-		}
 	}
 	
 	function create( $data ) {

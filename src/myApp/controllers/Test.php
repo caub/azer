@@ -3,7 +3,7 @@
 namespace myApp\controllers;
 
 use myApp\models\Bean;
-use lib\database\Request;
+use lib\database\BackendRequest;
 use myApp\views\View;
 
 

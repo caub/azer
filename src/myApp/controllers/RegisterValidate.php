@@ -3,7 +3,7 @@
 namespace myApp\controllers;
 
 use myApp\models\Bean;
-use lib\database\Request;
+use lib\database\BackendRequest;
 use myApp\views\View;
 
 
@@ -14,7 +14,7 @@ class RegisterValidate extends Base {
 
 		//completes registration process
 		
-		$request = new Request;
+		$request = new BackendRequest;
 		$responsejSon = $request->create("v2/AuthenticationRequestHandler", $data);
 			
 		$responseObject = json_decode($responsejSon);

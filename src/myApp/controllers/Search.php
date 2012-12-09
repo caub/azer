@@ -3,7 +3,7 @@
 namespace myApp\controllers;
 
 use myApp\models\Bean;
-use lib\database\Request;
+use lib\database\BackendRequest;
 use myApp\views\View;
 
 
@@ -17,7 +17,7 @@ class Search extends Base {
 		$predicates = Utils::parseQuery($data['q']);
 
 		$data['predicates'] = json_encode($predicates);
-		//debug_r($data['predicates']);
+		debug_r($data['predicates']);
 		
 		$params = array();
 		$params['predicates'] = $predicates;
@@ -26,7 +26,7 @@ class Search extends Base {
 		//don't flood with useless params
 		unset($data['q']);
 		
-		$request = new Request;
+		$request = new BackendRequest;
 		$responsejSon = $request->read("PublishHandler", $data);
 
 		$responseObject = json_decode($responsejSon);

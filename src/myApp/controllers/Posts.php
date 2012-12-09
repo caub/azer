@@ -4,7 +4,7 @@ namespace myApp\controllers;
 
 
 use myApp\models\Bean;
-use lib\database\Request;
+use lib\database\BackendRequest;
 use myApp\views\View;
 
 class Posts extends Base {
@@ -13,7 +13,7 @@ class Posts extends Base {
 
 		debug_r($data);
 		// Building the Authentication request
-		$request = new Request;
+		$request = new BackendRequest;
 		$responsejSon = $request->read("PublishHandler", $data);
 		
 		$responseObject = json_decode($responsejSon);
@@ -55,7 +55,7 @@ class Posts extends Base {
 		unset($data['vals']);
 		unset($data['text']);
 		
-		$request = new Request;
+		$request = new BackendRequest;
 		$responsejSon = $request->create("PublishHandler", $data);
 		
 		$responseObject = json_decode($responsejSon);
@@ -75,7 +75,7 @@ class Posts extends Base {
 		debug_r($data);
 		
 		// Building the Authentication request
-		$request = new Request;
+		$request = new BackendRequest;
 		$responsejSon = $request->delete("PublishHandler", $data);
 		
 		$responseObject = json_decode($responsejSon);

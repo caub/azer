@@ -3,14 +3,17 @@
 namespace lib\database;
 
 /*
- * where the database and a small Java server lies
+ * uses curl
  */
-define('SERVICE_URL', '138.96.242.20:8080/backend/');
 
 
-class Request {
+class CoreRequest {
 	
-	function __construct() {
+	protected $serviceUrl = null;
+	
+	function __construct($serviceUrl) {
+		
+		$this->serviceUrl = $serviceUrl;
 
 		//lazy init
 		$this->curl	= curl_init();
@@ -45,7 +48,7 @@ class Request {
 	}
 	
 	function sendGet($ressource, $data) {
-		curl_setopt($this->curl, CURLOPT_URL, SERVICE_URL.$ressource . '?'.http_build_query($data));
+		curl_setopt($this->curl, CURLOPT_URL, $this->serviceUrl.'/'.$ressource . '?'.http_build_query($data));
 		
 		$result = curl_exec($this->curl);
 		if ($result === false) {
@@ -55,7 +58,7 @@ class Request {
 	}
 	
 	function sendPost($ressource, $data) {
-		curl_setopt($this->curl, CURLOPT_URL, SERVICE_URL . $ressource);
+		curl_setopt($this->curl, CURLOPT_URL, $this->serviceUrl .'/'. $ressource);
 		curl_setopt($this->curl, CURLOPT_POST, true);
 		curl_setopt($this->curl, CURLOPT_POSTFIELDS, http_build_query($data));
 		$result = curl_exec($this->curl);
