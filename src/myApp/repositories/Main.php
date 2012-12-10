@@ -1,8 +1,7 @@
 <?php 
 
-namespace myApp\controllers;
+namespace myApp\repositories;
 
-use myApp\models\Bean;
 use lib\database\BackendRequest;
 use myApp\views\View;
 

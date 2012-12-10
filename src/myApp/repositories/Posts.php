@@ -1,10 +1,9 @@
 <?php 
 
-namespace myApp\controllers;
+namespace myApp\repositories;
 
-
-use myApp\models\Bean;
 use lib\database\BackendRequest;
+use lib\utils\Utils;
 use myApp\views\View;
 
 class Posts extends Base {

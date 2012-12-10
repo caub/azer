@@ -1,6 +1,6 @@
 <?php 
 
-namespace myApp\controllers;
+namespace myApp\repositories;
 
 use lib\database\BackendRequest;
 use myApp\views\View;

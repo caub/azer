@@ -18,9 +18,6 @@
 		<input type="text" name="login" placeholder="Email" value="test_myapp@yopmail.com" style="height: 24px;padding-left: 7px;font-size: 16px;">
 		<input type="password" name="password" placeholder="Password" value="1" style="height: 24px;padding-left: 7px;font-size: 16px;">
 		<input type="submit" value="Log in"  style="height: 24px;vertical-align: middle;">
-		 
-		or 
-		<a href="/<?= APP ?>/register">Register</a>
 	</form>
 
 </div>

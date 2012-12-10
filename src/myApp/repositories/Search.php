@@ -1,9 +1,9 @@
 <?php 
 
-namespace myApp\controllers;
+namespace myApp\repositories;
 
-use myApp\models\Bean;
 use lib\database\BackendRequest;
+use lib\utils\Utils;
 use myApp\views\View;
 
 
@@ -34,7 +34,7 @@ class Search extends Base {
 		//debug_r($responseObject);
 		if ($responseObject->status==200){
 			$data = (array) $responseObject->dataObject->results;
-			usort($data, 'myApp\controllers\Utils::sortByTime');
+			usort($data, 'lib\utils\Utils::sortByTime');
 			
 		} else {
 			$data = array();
@@ -46,7 +46,7 @@ class Search extends Base {
 	}
 	
 	function create( $data ) {
-
+		debug_r($data);
 	}
 	
 	function delete( $data  ) {

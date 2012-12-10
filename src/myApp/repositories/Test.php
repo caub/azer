@@ -1,17 +1,18 @@
 <?php 
 
-namespace myApp\controllers;
+namespace myApp\repositories;
 
-use myApp\models\Bean;
 use lib\database\BackendRequest;
 use myApp\views\View;
 
 
-class Map extends Base {
+class Test extends Base {
 
 
 	function read( $data, $params = array() ) {
-		View::render('map', $data);
+		View::render('test', $data);
+		
+		
 	}
 	
 	function create( $data ) {

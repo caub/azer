@@ -1,6 +1,6 @@
 <? include 'parts/header.php'; ?>
 
-<?php tabbar('articles'); ?>
+<?php tabbar('search'); ?>
 <? include 'parts/notifications.php'; ?>
 
 

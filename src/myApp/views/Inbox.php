@@ -3,8 +3,6 @@
 
 <?php tabbar('inbox'); ?>
 
-<? include 'parts/notifications.php'; ?>
-
 <div class="main flexCenterVertical">
 
 	<p><b>hi, <?= $_SESSION['user']->name ?></b></p>
@@ -18,6 +16,7 @@
 <?php endforeach; ?>
 	</pre>
 	<script>
+	var out = document.getElementById('out');
 	if (!!EventSource){
 		var source = new EventSource('/inbox/stream');
 		source.onmessage = function(e) {
@@ -32,7 +31,6 @@
 			}
 		};
 	}
-	var out = document.getElementById('out');
 	
 	$('#go').click(function(e){
 		$.post('/<?= APP ?>/inbox', {'user': '<?= $_SESSION['user']->name ?>', 'method': 'create', 'message': $('#in').val()});

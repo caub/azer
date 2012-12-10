@@ -1,8 +1,7 @@
 <?php 
 
-namespace myApp\controllers;
+namespace myApp\repositories;
 
-use myApp\models\Bean;
 use lib\database\CoreRequest;
 use lib\database\BackendRequest;
 use myApp\views\View;
@@ -40,6 +39,7 @@ class Inbox extends Base {
 		$d['data'] = json_encode(array($data['date'].': '.$data['user'] => json_encode($data)));
 		$d['metadata'] = '{}';
 		$d['predicates'] = '[]';
+		$d['notify'] = 'false';
 		
 		$request = new BackendRequest;
 		$responsejSon = $request->create("PublishHandler", $d);

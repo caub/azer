@@ -3,7 +3,7 @@
 namespace lib\database;
 
 /*
- * uses curl
+ * uses curl or any HTTP lib: Artax...
  */
 
 
@@ -25,26 +25,7 @@ class CoreRequest {
 		curl_setopt($this->curl, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($this->curl, CURLOPT_SSL_VERIFYHOST, 2);
 		curl_setopt($this->curl, CURLOPT_CAINFO, "/etc/ssl/certs/mymed.crt");
-
 		
-	}
-
-	
-	function create($ressource, $data){
-		$data = $this->setServiceParams($data, __METHOD__);
-		return $this->sendPost($ressource, $data);
-	}
-	function read($ressource, $data){
-		$data = $this->setServiceParams($data, __METHOD__);
-		return $this->sendGet($ressource, $data);
-	}
-	function update($ressource, $data){
-		$data = $this->setServiceParams($data, __METHOD__);
-		return $this->sendPost($ressource, $data);
-	}
-	function delete($ressource, $data){
-		$data = $this->setServiceParams($data, __METHOD__);
-		return $this->sendGet($ressource, $data);
 	}
 	
 	function sendGet($ressource, $data) {
@@ -67,29 +48,6 @@ class CoreRequest {
 		}
 		return $result;
 	}
-	
-	
-	
-	function setServiceParams($data, $methodPath) { //Service specific params
-		if(isset($_SESSION['accessToken']) && !isset($data['accessToken'])) {
-			$data['accessToken'] = $_SESSION['accessToken'];
-		}
-		$data['application'] = APPLICATION_NAME;
-
-		$parts = explode('::', $methodPath);
-		$method= $parts[1];
-		$codes = array(
-			'create' => 0,
-			'read'   => 1,
-			'update' => 2,
-			'delete' => 3
-		);
-		$data['code'] = $codes[$method];
-		return $data;
-	}
-	
-	
-
 	
 }
 ?>

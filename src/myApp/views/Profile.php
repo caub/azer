@@ -1,7 +1,7 @@
 <? include 'parts/header.php'; ?>
 
 
-<?php tabbar(); ?>
+<?php tabbar('search'); ?>
 
 <? include 'parts/notifications.php'; ?>
 

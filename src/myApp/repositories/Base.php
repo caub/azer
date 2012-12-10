@@ -1,6 +1,6 @@
 <?php 
 
-namespace myApp\controllers;
+namespace myApp\repositories;
 
 
 //use myApp\views\View;

@@ -1,7 +1,7 @@
 <? include 'parts/header.php'; ?>
 
 
-<?php tabbar('articles'); ?>
+<?php tabbar('search'); ?>
 
 <? include 'parts/notifications.php'; ?>
 
@@ -9,16 +9,20 @@
 
 	<br>
 	<form style="text-align: center;" action="/<?= APP ?>/search">
-		<input name="q" type="search" value="<?= $params['title'] ?>" placeholder="color=blue&color=red" 
+		<input id="q" name="q" type="search" value="<?= $params['title'] ?>" placeholder="color=blue&color=red" 
 		style="min-width:350px;height: 27px;padding-left: 7px;font-size: 16px;">
 		<input type="submit" value="Search" style="height: 27px;vertical-align: 0%;">
+		<input type="button" value="Subscribe" style="height: 27px;vertical-align: 0%;" onclick="$.get('/<?= APP ?>/search?method=create&q='+$('#q').val())">
 	</form>
 	
 	<ul style="padding-left: 1em;padding-top: 1em;">
 	<? if(!empty($data)): ?>
 	<? foreach($data as $item): ?>
 	  <li>
-	   <?= date('j/n/y G:i', $item->time); ?> <a href="/<?= APP ?>/posts/<?= urlencode(trim($item->id)) ?>">#<?= $item->id ?></a> by <a href="/<?= APP ?>/profile/<?= urlencode(trim($item->user)) ?>"><?= substr($item->user, 6) ?></a> 
+	   <a href="/<?= APP ?>/posts/<?= urlencode(trim($item->id)) ?>"><?= date('j/n/y G:i', $item->time); ?></a> 
+	   <? if(isset($item->user)): ?>
+	   	by <a href="/<?= APP ?>/profile/<?= urlencode(trim($item->user)) ?>"><?= substr($item->user, 6) ?></a> 
+	   <?php endif; ?>
 	   <div style="margin: 5px;">
 	   <ul>
 	   <? foreach($item as $k=>$v): ?>

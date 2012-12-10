@@ -23,18 +23,18 @@ class Router {
 			unset($_REQUEST['method']);
 		}
 		
-		$controllerName = isset($matches['page']) ? $matches['page'] : $this->config['defaultController'];
+		$repoName = isset($matches['page']) ? $matches['page'] : $this->config['defaultPage'];
 		
 		if (isset($matches['id'])){ //puts id in the query string, if the router detected one
 			$_REQUEST['id'] = $matches['id'];
 		}
 		
-		$authorizedMethods = array_key_exists($controllerName, $accessControl)? $accessControl[$controllerName]:$accessControl['default'];
+		$authorizedMethods = array_key_exists($repoName, $accessControl)? $accessControl[$repoName]:$accessControl['default'];
 		
-		$controllerName = 'myApp\\controllers\\' . ucwords($controllerName);
-		$controller = new $controllerName;
+		$repoName = 'myApp\\repositories\\' . ucwords($repoName);
+		$repository = new $repoName;
 		
-		$ac = new \myApp\accesscontrol\Main($controller, $authorizedMethods, $accessControl['fallback']);
+		$ac = new \myApp\accesscontrol\Main($repository, $authorizedMethods, $accessControl['fallback']);
 
 		//call it
 		try{

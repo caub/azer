@@ -3,7 +3,7 @@
 	"routeExpression": "@/(?P<app>\\w+)(:?/(?P<page>\\w+)(:?/(?P<id>[^/]+))?)?@",
 	
 	"defaultMethod": "read",
-	"defaultController": "main"
+	"defaultPage": "main"
 
 
 }
