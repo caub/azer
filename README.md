@@ -10,20 +10,21 @@ You will need to set your webserver to redirect all request like "/myApp/foo/bar
 
 for ex with an Apache .htaccess in www/myApp/ folder:
 
-<IfModule mod_rewrite.c>
-	RewriteEngine On
-	RewriteRule ^index\.php$ - [L]
-	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteCond %{REQUEST_FILENAME} !-d
-	RewriteRule . index.php [L]
-</IfModule>
+
+	<IfModule mod_rewrite.c>
+		RewriteEngine On
+		RewriteRule ^index\.php$ - [L]
+		RewriteCond %{REQUEST_FILENAME} !-f
+		RewriteCond %{REQUEST_FILENAME} !-d
+		RewriteRule . index.php [L]
+	</IfModule>
 
 or in your apache sites-enabled config:
 
-<IfModule mod_rewrite.c>
+	<IfModule mod_rewrite.c>
 		RewriteEngine On
 		RewriteCond %{REQUEST_URI} ^/?myApp
 		RewriteCond %{REQUEST_FILENAME} !-f
 		RewriteCond %{REQUEST_FILENAME} !-d
 		RewriteRule . /myApp/index.php [L]
-</IfModule>
+	</IfModule>
