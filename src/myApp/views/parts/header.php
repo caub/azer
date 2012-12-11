@@ -10,12 +10,12 @@
 	<meta name="viewport" content="width=device-width" />
 	
 	<!-- CSS -->
-	<link href="/application/myApp/css/app.css" rel="stylesheet" />
+	<link href="/myApp/css/app.css" rel="stylesheet" />
 	
 	<!-- JS -->
-	<script src="/lib/jquery/jquery-1.8.2.min.js"></script>
-	<script type="text/javascript" src="/application/myApp/javascript/map.js"></script>
-	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+	<script src="/myApp/javascript/jquery-1.8.2.min.js"></script>
+	<script src="/myApp/javascript/map.js"></script>
+	<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
 </head>
 		

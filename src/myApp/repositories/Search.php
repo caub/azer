@@ -13,6 +13,8 @@ class Search extends Base {
 	function read( $data, $params = array() ) {
 		debug('gsrg');
 
+		date_default_timezone_set ('Europe/Paris');
+
 		//sanitize data
 		$predicates = Utils::parseQuery($data['q']);
 

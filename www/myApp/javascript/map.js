@@ -11,6 +11,8 @@ var accessToken; //backend API accessToken
 var pinMarker;
 
 var app_name = "myApp"; //should be passed by ajax also
+var backend = "138.96.242.20/backend"; //should be passed by ajax also
+
 
 $(function() {
 
@@ -26,7 +28,7 @@ $(function() {
 	pinMarker = new google.maps.Marker({
 		map : map,
 		draggable: true,
-		icon: '/application/myApp/img/pin'
+		icon: '/myApp/img/pin'
 	});
 
 	pinMarker.setPosition(new google.maps.LatLng(latlng.lat()+0.0025, latlng.lng()-0.010));
@@ -87,7 +89,7 @@ $(function() {
 	 */
 	
 	// get a backend access token
-	$.get('/application/myApp/xhr_session_token.php', 
+	$.get('/'+app_name+'/session/accessToken', 
 		function(res){
 			accessToken = res;
 			google.maps.event.trigger(map, 'dragend');
@@ -118,7 +120,7 @@ function getPOIs(){
 	
 	//get geocells then results
 	
-	$.get('/backend/GeoCellHandler?position='+coords.join('|'), function(response){
+	$.get(backend+'/GeoCellHandler?position='+coords.join('|'), function(response){
 		cells = response.dataObject.results;
 		var predicates = [];
 		for( var i in cells){
@@ -172,7 +174,7 @@ function addPOI(){
 	
 	var data = {"text": encodeURIComponent($('#content').val()), "time": time};
 	
-	$.get('/backend/GeoCellHandler?position='+coords.join('|'), function(response){
+	$.get(backend+'/GeoCellHandler?position='+coords.join('|'), function(response){
 		cells = response.dataObject.results;
 		
 		var predicates = [];
@@ -199,7 +201,7 @@ function delPOI(id){
 
 	console.log(id);
 
-	$.get("/backend/PublishHandler",
+	$.get(backend+'/PublishHandler',
 		{
 			code: 3,
 			application: app_name,
@@ -215,7 +217,7 @@ function getDetails(id, marker){
 
 	console.log(marker);
 	
-	$.get("/backend/PublishHandler",
+	$.get(backend+'/PublishHandler',
 		{
 			code: 1,
 			application: app_name,
