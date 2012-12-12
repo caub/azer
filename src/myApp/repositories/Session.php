@@ -13,18 +13,6 @@ class Session extends Base {
 		echo $_SESSION[$data['id']];
 	}
 	
-	function create( $data ) {
-
-	}
-	
-	function delete( $data  ) {
-
-	}
-	
-	function update( $data  ) {
-
-	}
-	
 }
 
 

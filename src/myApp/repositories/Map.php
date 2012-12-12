@@ -13,18 +13,6 @@ class Map extends Base {
 		View::render('map', $data);
 	}
 	
-	function create( $data ) {
-
-	}
-	
-	function delete( $data  ) {
-
-	}
-	
-	function update( $data  ) {
-
-	}
-	
 }
 
 

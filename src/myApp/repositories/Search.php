@@ -46,18 +46,6 @@ class Search extends Base {
 		View::render('results', $data, $params);
 		
 	}
-	
-	function create( $data ) {
-		debug_r($data);
-	}
-	
-	function delete( $data  ) {
-
-	}
-	
-	function update( $data  ) {
-
-	}
 
 	
 }

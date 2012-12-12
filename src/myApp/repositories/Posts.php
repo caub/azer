@@ -89,10 +89,6 @@ class Posts extends Base {
 		}
 		
 	}
-	function update( $data ) {
-
-	}
-
 	
 }
 
