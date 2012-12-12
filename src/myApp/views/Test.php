@@ -3,9 +3,9 @@
 
 <header>
 <nav>
-<a href="/<?= APP ?>/login" id="navLanding">Log in</a>
-<a href="/<?= APP ?>/register" id="navTour">Register</a>
-<a href="/<?= APP ?>/test" class="selected">Test area</a>
+<a href="/<?= APP_NAME ?>/login" id="navLanding">Log in</a>
+<a href="/<?= APP_NAME ?>/register" id="navTour">Register</a>
+<a href="/<?= APP_NAME ?>/test" class="selected">Test area</a>
 </nav>
 </header>
 

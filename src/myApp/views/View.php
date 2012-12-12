@@ -28,7 +28,7 @@ class View {
 		include 'templates/footer.php';
 	}*/
 	
-	static function render($viewName, $data = array(), $params = array()){ 
+	static function render($viewName, $data = array(), $other = array()){ 
 		include __DIR__ . '/parts/tabbar.php';
 		include __DIR__ . '/' .ucwords($viewName). '.php';
 		exit();

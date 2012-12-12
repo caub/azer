@@ -9,7 +9,7 @@ use myApp\views\View;
 class RegisterValidate extends Base {
 
 
-	function read( $data, $params = array() ) {
+	function read( $data, $other = array() ) {
 
 		//completes registration process
 		
@@ -20,11 +20,11 @@ class RegisterValidate extends Base {
 		debug('--');
 		debug_r($responseObject);
 		if ($responseObject->status==200){
-			$params['notification'] = 'account validated';
+			$other['notification'] = 'account validated';
 		} else {
-			$params['notification'] = $responseObject->description;
+			$other['notification'] = $responseObject->description;
 		}
-		View::render('login', $data, $params);
+		View::render('login', $data, $other);
 		
 	}
 	

@@ -4,8 +4,8 @@
 
 <header>
 <nav>
-<a href="/<?= APP ?>/login" id="navLanding" class="selected">Log in</a><!--  
---><a href="/<?= APP ?>/register" id="navTour">Register</a>
+<a href="/<?= APP_NAME ?>/login" id="navLanding" class="selected">Log in</a><!--  
+--><a href="/<?= APP_NAME ?>/register" id="navTour">Register</a>
 </nav>
 </header>
 
@@ -13,7 +13,7 @@
 
 <div class="main flexCenterVertical">
 	
-	<form action="/<?= APP ?>/login" method="post" style="text-align: center;">
+	<form action="/<?= APP_NAME ?>/login" method="post" style="text-align: center;">
 	
 		<input type="text" name="login" placeholder="Email" value="test_myapp@yopmail.com" style="height: 24px;padding-left: 7px;font-size: 16px;">
 		<input type="password" name="password" placeholder="Password" value="1" style="height: 24px;padding-left: 7px;font-size: 16px;">

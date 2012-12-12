@@ -8,7 +8,7 @@ use myApp\views\View;
 class Profile extends Base {
 
 	
-	function read( $data, $params = array() ) {
+	function read( $data, $other = array() ) {
 		
 		if (!isset($data['id'])){
 			$data['id'] = $_SESSION['user']->id;
@@ -23,7 +23,7 @@ class Profile extends Base {
 		if ($responseObject->status==200){
 			$data = (array) $responseObject->dataObject->user;
 		}
-		View::render('profile', $data, $params);
+		View::render('profile', $data, $other);
 
 	}
 	

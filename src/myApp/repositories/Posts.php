@@ -8,7 +8,7 @@ use myApp\views\View;
 
 class Posts extends Base {
 
-	function read( $data, $params = array() ) {
+	function read( $data, $other = array() ) {
 
 		debug_r($data);
 		// Building the Authentication request
@@ -22,9 +22,9 @@ class Posts extends Base {
 			$data = (array) $responseObject->dataObject->details;
 			$data['id'] = $id;
 		} else {
-			$params = array('notification'=>'no content');
+			$other = array('notification'=>'no content');
 		}
-		View::render('posts', $data, $params);
+		View::render('posts', $data, $other);
 
 	}
 	
@@ -61,11 +61,11 @@ class Posts extends Base {
 		debug('--');
 		debug_r($responseObject);
 		if ($responseObject->status==200){
-			$params = array('notification'=>'success');
+			$other = array('notification'=>'success');
 			header("Location: /".APP.'/posts/'.$responseObject->dataObject->id);
 			exit();
 		} else {
-			$params = array('notification'=>$responseObject->description);
+			$other = array('notification'=>$responseObject->description);
 		}
 		
 
@@ -84,8 +84,8 @@ class Posts extends Base {
 			header("Location: /".APP."/posts/".$data['id']);
 			exit();
 		} else {
-			$params = array('notification'=>'no content');
-			View::render('posts', $data, $params);
+			$other = array('notification'=>'no content');
+			View::render('posts', $data, $other);
 		}
 		
 	}

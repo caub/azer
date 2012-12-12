@@ -9,7 +9,7 @@ use myApp\views\View;
 class Logout extends Base {
 
 
-	function read( $data, $params = array() ) {
+	function read( $data, $other = array() ) {
 		
 		$request = new BackendRequest();
 		$responsejSon = $request->delete("v2/SessionRequestHandler", $data);

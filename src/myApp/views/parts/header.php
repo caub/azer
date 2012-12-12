@@ -4,7 +4,7 @@
 
 <head> 
 
-	<title><?= APPLICATION_NAME ?></title> 
+	<title><?= APP_NAME ?></title> 
 			
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="viewport" content="width=device-width" />
@@ -16,6 +16,11 @@
 	<script src="/myApp/javascript/jquery-1.8.2.min.js"></script>
 	<script src="/myApp/javascript/map.js"></script>
 	<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+	<script type="text/javascript">
+		var accessToken = '<?= $_SESSION['accessToken'] ?>';
+		var app_name = '<?= APP_NAME ?>';
+		var backend = '<?= BACKEND_URL ?>';
+	</script>
 
 </head>
 		

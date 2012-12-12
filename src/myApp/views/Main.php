@@ -18,7 +18,7 @@
 		<?= $k ?> => <?= $v ?><br>
 	<?php endforeach; ?>
 	</div>
-	<a href="/<?= APP ?>/logout">Log out</a>
+	<a href="/<?= APP_NAME ?>/logout">Log out</a>
 
 
 

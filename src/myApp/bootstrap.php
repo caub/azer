@@ -5,11 +5,9 @@ error_reporting(E_ALL);
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', TRUE);
 
-define('APPLICATION_NAME', "myApp");
-define('APP', "myapp");
-//define('APP_ROOT', __DIR__ );
-//define('MYMED_ROOT', __DIR__ . '/../../current');
-//define('MYMED_URL_ROOT', '../../');
+define('APP_NAME', "myApp");
+define('BACKEND_URL', 'http://138.96.242.20/backend');
+//maybe put them in a config file
 
 require('PhpConsole.php');
 PhpConsole::start();
@@ -28,10 +26,10 @@ require __DIR__.'/../lib/autoload.php';
 
 session_start();
 
-$uri =  isset( $_SERVER['SCRIPT_URL'] ) ? $_SERVER['SCRIPT_URL'] : '/'.APP;
+$uri =  isset( $_SERVER['SCRIPT_URL'] ) ? $_SERVER['SCRIPT_URL'] : '/'.APP_NAME;
 
 if (isset($_GET['registration']) && $_GET['registration'] == "ok" ) { //nasty redirection... for registration mails
-	header('Location:/'.APP.'/registerValidate?accessToken='.$_GET['accessToken']);
+	header('Location:/'.APP_NAME.'/registerValidate?accessToken='.$_GET['accessToken']);
 	exit();
 }
 
@@ -40,8 +38,8 @@ $config = JsonToArray::fetchConfig(  __DIR__ .'/config/routes.json' );
 $router = new Router( $config );
 
 $rbac = JsonToArray::fetchConfig(  __DIR__ .'/config/rbac.json' ); /*loads role based access control*/
-$userRole = isset($_SESSION['user']) ? (isset($_SESSION['user']->role[APP])?$_SESSION['user']->role[APP]:2) : 0;
-// the 2 above is for demo, after $_SESSION['user']->role[APP] will be always set in profiles
+$userRole = isset($_SESSION['user']) ? (isset($_SESSION['user']->role[APP_NAME])?$_SESSION['user']->role[APP_NAME]:2) : 0;
+// the 2 above is for demo, after $_SESSION['user']->role[APP_NAME] will be always set in profiles
 
 $router->route($uri, $rbac[$userRole]);
 

@@ -9,7 +9,7 @@ use myApp\views\View;
 class Session extends Base {
 
 
-	function read( $data, $params = array() ) {
+	function read( $data, $other = array() ) {
 		echo $_SESSION[$data['id']];
 	}
 	

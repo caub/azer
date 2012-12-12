@@ -13,7 +13,7 @@
 <?php endforeach; ?>
 </div>
 
-<a href="/<?= APP ?>/posts/<?= urlencode(trim($data['id'])) ?>?method=delete">delete #<?= $data['id'] ?></a>
+<a href="/<?= APP_NAME ?>/posts/<?= urlencode(trim($data['id'])) ?>?method=delete">delete #<?= $data['id'] ?></a>
 
 </div>
 

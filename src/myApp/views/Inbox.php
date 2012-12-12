@@ -16,31 +16,12 @@
 <?php endforeach; ?>
 	</pre>
 	<script>
-	var backend = 'http://138.96.242.20/backend';
-	var out = document.getElementById('out');
-	if (!!EventSource){
-		var source = new EventSource(backend+'/inbox/stream');
-		source.onmessage = function(e) {
-			// XSS in chat is fun
-			entry = JSON.parse(e.data);
-			if (entry.type !== "subscribe"){
-				//alert(msg.data);
-				var data = JSON.parse(entry.data);
-				out.innerHTML = '['+data.date+'] '+data.user+': '+ htmlEntities(data.message) + '\n' + out.innerHTML;
-			}else{
-				//alert('subscribed');
-			}
-		};
-	}
-	
-	$('#go').click(function(e){
-		$.post('/<?= APP ?>/inbox', {'user': '<?= $_SESSION['user']->name ?>', 'method': 'create', 'message': $('#in').val()});
-		$('#in').val('');
+	$(function() {
+		$('#go').click(function(e){
+			$.post('/<?= APP_NAME ?>/inbox', {'user': '<?= $_SESSION['user']->name ?>', 'method': 'create', 'message': $('#in').val()});
+			$('#in').val('');
+		});
 	});
-	
-	function htmlEntities(str) {
-		return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-	}
 	</script>
 	
 </div>

@@ -10,7 +10,7 @@ use myApp\views\View;
 class Search extends Base {
 
 
-	function read( $data, $params = array() ) {
+	function read( $data, $other = array() ) {
 		debug('gsrg');
 
 		date_default_timezone_set ('Europe/Paris');
@@ -21,9 +21,9 @@ class Search extends Base {
 		$data['predicates'] = json_encode($predicates);
 		debug_r($data['predicates']);
 		
-		$params = array();
-		$params['predicates'] = $predicates;
-		$params['title'] = $data['q'];
+		$other = array();
+		$other['predicates'] = $predicates;
+		$other['title'] = $data['q'];
 		
 		//don't flood with useless params
 		unset($data['q']);
@@ -40,10 +40,10 @@ class Search extends Base {
 			
 		} else {
 			$data = array();
-			$params['notification']='no results';
+			$other['notification']='no results';
 		}
 
-		View::render('results', $data, $params);
+		View::render('results', $data, $other);
 		
 	}
 

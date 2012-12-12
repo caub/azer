@@ -23,9 +23,11 @@ or in your apache sites-enabled config:
 
 	<IfModule mod_rewrite.c>
 		RewriteEngine On
-		RewriteRule ^/?myApp/(javascript|css|img) - [L]
-		RewriteCond %{REQUEST_URI} ^/?myApp
+		RewriteRule ^/?myApp/(javascript|css|img) - [L,NC]
+		RewriteCond %{REQUEST_URI} ^/?myApp [NC]
 		RewriteCond %{REQUEST_FILENAME} !-f
 		RewriteCond %{REQUEST_FILENAME} !-d
 		RewriteRule . /myApp/index.php [L]
 	</IfModule>
+	
+and finally, you also need to set your server to allow CORS, (ex on Apache http://enable-cors.org/server_apache.html)

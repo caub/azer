@@ -3,23 +3,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width" />
-<title><?= APPLICATION_NAME ?></title> 
+<title><?= APP_NAME ?></title> 
 
 <link href="/myApp/css/app.css" rel="stylesheet" />
 
 <script src="/myApp/javascript/jquery-1.8.2.min.js"></script>
 <script src="/myApp/javascript/map.js"></script>
 <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+	var accessToken = '<?= $_SESSION['accessToken'] ?>';
+	var app_name = '<?= APP_NAME ?>';
+	var backend = '<?= BACKEND_URL ?>';
+</script>
 
 </head>
 <body style="overflow-y: hidden;">
 	
 <header style="position: absolute;top: 0;z-index: 1;">
 <nav>
-<a href="/<?= APP ?>">Home</a><!--    
---><a href="/<?= APP ?>/search">Search</a><!--  
---><a href="/<?= APP ?>/map" class="selected">Map</a><!--  
---><a href="/<?= APP ?>/inbox">Messages</a>
+<a href="/<?= APP_NAME ?>">Home</a><!--    
+--><a href="/<?= APP_NAME ?>/search">Search</a><!--  
+--><a href="/<?= APP_NAME ?>/map" class="selected">Map</a><!--  
+--><a href="/<?= APP_NAME ?>/inbox">Messages</a>
 </nav>
 </header>
 	

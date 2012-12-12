@@ -6,15 +6,36 @@ var markers = {}; //list of markers on the map
 
 var rad = 0.005; //radius of search
 
-var accessToken; //backend API accessToken
-
 var pinMarker;
 
-var app_name = "myApp"; //should be passed by ajax also
-var backend = "138.96.242.20/backend"; //should be passed by ajax also
+//var accessToken; //backend API accessToken, set via PHP
+//var app_name;// set via PHP
+//var backend; // set via PHP
 
 
 $(function() {
+	
+	var out = document.getElementById('out'); //notifications
+	if (!!EventSource){
+		var source = new EventSource( /*backend+*/'/inbox/stream'); //native EventSource don't support CORS, have to use https://github.com/Yaffle/EventSource for that
+		source.onmessage = function(e) {
+			// XSS in chat is fun
+			entry = JSON.parse(e.data);
+			if (entry.type === "message" && entry.channel === 'chat'){
+				document.getElementById('notification').style.display = '';
+				//alert(msg.data);
+				var data = JSON.parse(entry.data);
+				out.innerHTML = '['+data.user+'] '+': '+ htmlEntities(data.message);
+			}else if (entry.type === "message"){
+				document.getElementById('notification').style.display = '';
+				//alert(msg.data);
+				out.innerHTML = '[notification]: '+entry.data;
+			}
+			else{
+				//alert('subscribed');
+			}
+		};
+	}
 
 	markerList = {};
 	
@@ -28,7 +49,7 @@ $(function() {
 	pinMarker = new google.maps.Marker({
 		map : map,
 		draggable: true,
-		icon: '/myApp/img/pin'
+		icon: '/'+app_name+'/img/pin'
 	});
 
 	pinMarker.setPosition(new google.maps.LatLng(latlng.lat()+0.0025, latlng.lng()-0.010));
@@ -82,18 +103,14 @@ $(function() {
 	
 	rectangle.setOptions(rectOptions);
 	
+	google.maps.event.trigger(map, 'dragend');
+	
 	/*
 	 * if (navigator.geolocation) {
 	 * navigator.geolocation.watchPosition(displayPosition, displayError,
 	 * {enableHighAccuracy : true, timeout: 5000, maximumAge: 0}); }
 	 */
-	
-	// get a backend access token
-	$.get('/'+app_name+'/session/accessToken', 
-		function(res){
-			accessToken = res;
-			google.maps.event.trigger(map, 'dragend');
-	});
+
 	
 
 });
@@ -120,7 +137,7 @@ function getPOIs(){
 	
 	//get geocells then results
 	
-	$.get(backend+'/GeoCellHandler?position='+coords.join('|'), function(response){
+	$.getJSON(backend+'/GeoCellHandler?position='+coords.join('|'), function(response){
 		cells = response.dataObject.results;
 		var predicates = [];
 		for( var i in cells){
@@ -128,7 +145,7 @@ function getPOIs(){
 		}
 		
 		//yes I know indented cbs suck, can be improved with trigger event
-		$.get("/backend/PublishHandler",
+		$.getJSON(backend+'/PublishHandler',
 			{
 				code: 1,
 				application: app_name,
@@ -174,14 +191,14 @@ function addPOI(){
 	
 	var data = {"text": encodeURIComponent($('#content').val()), "time": time};
 	
-	$.get(backend+'/GeoCellHandler?position='+coords.join('|'), function(response){
+	$.getJSON(backend+'/GeoCellHandler?position='+coords.join('|'), function(response){
 		cells = response.dataObject.results;
 		
 		var predicates = [];
 		for( var i in cells){
 			predicates.push({"position": [cells[i]], "type": types});
 		}
-		$.post("/backend/PublishHandler",
+		$.post(backend+'/PublishHandler',
 			{
 				code: 0,
 				application: app_name,
@@ -201,7 +218,7 @@ function delPOI(id){
 
 	console.log(id);
 
-	$.get(backend+'/PublishHandler',
+	$.getJSON(backend+'/PublishHandler',
 		{
 			code: 3,
 			application: app_name,
@@ -217,7 +234,7 @@ function getDetails(id, marker){
 
 	console.log(marker);
 	
-	$.get(backend+'/PublishHandler',
+	$.getJSON(backend+'/PublishHandler',
 		{
 			code: 1,
 			application: app_name,
@@ -294,6 +311,10 @@ function showOverlays() {
 function deleteOverlays() {
 	clearOverlays();
 	markers = {};
+}
+
+function htmlEntities(str) {
+	return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
 

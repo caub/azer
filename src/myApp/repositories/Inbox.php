@@ -10,7 +10,7 @@ use myApp\views\View;
 class Inbox extends Base {
 
 
-	function read( $data, $params = array() ) {
+	function read( $data, $other = array() ) {
 		
 		$request = new BackendRequest;
 		$responsejSon = $request->read("PublishHandler", array('id' => 'inbox', 'reversed'=>'true'));

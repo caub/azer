@@ -9,7 +9,7 @@ use myApp\views\View;
 class Login extends Base {
 
 
-	function read( $data = array(), $params = array() ) {
+	function read( $data = array(), $other = array() ) {
 
 		if ($_SERVER['REQUEST_METHOD'] == "POST") { //Auth attempt
 			if ( !empty($data['password']) ){
@@ -33,16 +33,16 @@ class Login extends Base {
 					if ($responseObject->status==200){
 						$_SESSION['user'] = (object) array_map('trim', (array) $responseObject->dataObject->user);
 						$_SESSION['accessControl'] = array('read', 'create', 'update', 'delete');
-						header("Location: /".APP);
+						header("Location: /".APP_NAME);
 						exit();
 					}
 			
 				}
-				$params['notification'] = 'fail!';
-				View::render('login', $data, $params);
+				$other['notification'] = 'fail!';
+				View::render('login', $data, $other);
 			} else {
-				$params['notification'] = 'password..';
-				View::render('login', $data, $params);
+				$other['notification'] = 'password..';
+				View::render('login', $data, $other);
 			}
 		} else {
 			View::render('login', $data);

@@ -8,7 +8,7 @@ namespace myApp\repositories;
 class Base {
 
 	
-	function read( $data, $params = array() ) {
+	function read( $data, $other = array() ) {
 	}
 	
 	function create( $data ) {
@@ -22,7 +22,7 @@ class Base {
 	
 	function errorAuthentication ( $data){
 		//$this->read($data, array('notification'=>'please log in'));
-		header('Location:/'.APP.'/login');
+		header('Location:/'.APP_NAME.'/login');
 		
 	}
 	function error ( $data){

@@ -9,7 +9,7 @@ use myApp\views\View;
 class Register extends Base {
 
 
-	function read( $data, $params = array() ) {
+	function read( $data, $other = array() ) {
 		View::render('register', $data);
 	}
 	
@@ -34,7 +34,7 @@ class Register extends Base {
 			$request = new BackendRequest();
 			$responsejSon = $request->create("v2/AuthenticationRequestHandler", 
 				array(
-					'application' => APPLICATION_NAME,
+					'application' => APP_NAME,
 					'code' => $code,
 					'user' => json_encode($data),
 					'authentication' => json_encode($auth)
@@ -45,14 +45,14 @@ class Register extends Base {
 			debug('--');
 			debug_r($responseObject);
 			if ($responseObject->status==200){
-				$params['notification'] = 'check your emails';
+				$other['notification'] = 'check your emails';
 			} else {
-				$params['notification'] = 'try again';
+				$other['notification'] = $responseObject->description;
 			}
-			View::render('login', $data, $params);
+			View::render('login', $data, $other);
 		} else {
-			$params['notification'] = 'no empty fields please';
-			View::render('register', $data, $params);
+			$other['notification'] = 'no empty fields please';
+			View::render('register', $data, $other);
 		}
 		
 

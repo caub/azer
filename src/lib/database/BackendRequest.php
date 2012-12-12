@@ -11,7 +11,7 @@ class BackendRequest extends CoreRequest{
 
 	
 	function __construct() {
-		parent::__construct('138.96.242.20:8080/backend');
+		parent::__construct(BACKEND_URL);
 	}
 
 	
@@ -38,7 +38,7 @@ class BackendRequest extends CoreRequest{
 		if(isset($_SESSION['accessToken']) && !isset($data['accessToken'])) {
 			$data['accessToken'] = $_SESSION['accessToken'];
 		}
-		$data['application'] = APPLICATION_NAME;
+		$data['application'] = APP_NAME;
 
 		$parts = explode('::', $methodPath);
 		$method= $parts[1];
