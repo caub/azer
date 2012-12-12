@@ -6,11 +6,11 @@ use lib\database\BackendRequest;
 use myApp\views\View;
 
 
-class Map extends Base {
+class Session extends Base {
 
 
 	function read( $data, $params = array() ) {
-		View::render('map', $data);
+		echo $_SESSION[$data['id']];
 	}
 	
 }

@@ -13,7 +13,7 @@ for ex with an Apache .htaccess in www/myApp/ folder:
 
 	<IfModule mod_rewrite.c>
 		RewriteEngine On
-		RewriteRule ^index\.php$ - [L]
+		RewriteRule ^/?(javascript|css|img) - [L]
 		RewriteCond %{REQUEST_FILENAME} !-f
 		RewriteCond %{REQUEST_FILENAME} !-d
 		RewriteRule . index.php [L]
@@ -23,6 +23,7 @@ or in your apache sites-enabled config:
 
 	<IfModule mod_rewrite.c>
 		RewriteEngine On
+		RewriteRule ^/?myApp/(javascript|css|img) - [L]
 		RewriteCond %{REQUEST_URI} ^/?myApp
 		RewriteCond %{REQUEST_FILENAME} !-f
 		RewriteCond %{REQUEST_FILENAME} !-d

@@ -21,18 +21,6 @@ class Logout extends Base {
 		
 	}
 	
-	function create( $data ) {
-
-	}
-	
-	function delete( $data  ) {
-
-	}
-	
-	function update( $data  ) {
-
-	}
-	
 }
 
 

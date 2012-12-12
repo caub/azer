@@ -16,9 +16,10 @@
 <?php endforeach; ?>
 	</pre>
 	<script>
+	var backend = 'http://138.96.242.20/backend';
 	var out = document.getElementById('out');
 	if (!!EventSource){
-		var source = new EventSource('/inbox/stream');
+		var source = new EventSource(backend+'/inbox/stream');
 		source.onmessage = function(e) {
 			// XSS in chat is fun
 			entry = JSON.parse(e.data);

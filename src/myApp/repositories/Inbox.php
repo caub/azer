@@ -54,14 +54,6 @@ class Inbox extends Base {
 		
 	}
 	
-	function delete( $data  ) {
-
-	}
-	
-	function update( $data  ) {
-
-	}
-	
 }
 
 

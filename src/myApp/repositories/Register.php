@@ -11,8 +11,6 @@ class Register extends Base {
 
 	function read( $data, $params = array() ) {
 		View::render('register', $data);
-		
-		
 	}
 	
 	function create( $data ) {
@@ -57,14 +55,6 @@ class Register extends Base {
 			View::render('register', $data, $params);
 		}
 		
-
-	}
-	
-	function delete( $data  ) {
-
-	}
-	
-	function update( $data  ) {
 
 	}
 	
